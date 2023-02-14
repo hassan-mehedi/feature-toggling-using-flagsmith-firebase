@@ -1,5 +1,7 @@
+import { fetchAndActivate, getAll, getValue } from "firebase/remote-config";
 import React, { useState, useEffect } from "react";
 import flagsmith from "flagsmith";
+import { app, remoteConfig } from "./config/firebase";
 import "./App.css";
 
 function App() {
@@ -21,12 +23,19 @@ function App() {
 
         fetchNewsStories();
 
+        fetchAndActivate(remoteConfig)
+            .then(() => {
+                const value = getValue(remoteConfig, "show_story_points");
+                setShowStoryPoints(value._value);
+            })
+            .catch(error => console.error(error));
+
         flagsmith.init({
             environmentID: "2aQ8Wc4RxNoVnQZBdweG4K",
             cacheFlags: true,
             enableAnalytics: true,
             onChange: (oldFlags, params) => {
-                setShowStoryPoints(flagsmith.hasFeature("show_story_points"));
+                // setShowStoryPoints(flagsmith.hasFeature("show_story_points"));
             },
         });
     }, []);
@@ -39,9 +48,9 @@ function App() {
                 <div className="stories">
                     {Array.isArray(stories) &&
                         stories.map(
-                            story =>
+                            (story, index) =>
                                 story.url && (
-                                    <h3>
+                                    <h3 key={index}>
                                         <a href={story.url} target="_blank" rel="noreferrer">
                                             {story.title}
                                         </a>{" "}
