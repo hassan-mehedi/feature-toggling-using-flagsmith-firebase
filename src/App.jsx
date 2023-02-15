@@ -1,7 +1,7 @@
-import { fetchAndActivate, getAll, getValue } from "firebase/remote-config";
+import { fetchAndActivate, getValue } from "firebase/remote-config";
 import React, { useState, useEffect } from "react";
-import flagsmith from "flagsmith";
-import { app, remoteConfig } from "./config/firebase";
+// import flagsmith from "flagsmith";
+import { remoteConfig } from "./config/firebase";
 import "./App.css";
 
 function App() {
@@ -30,14 +30,14 @@ function App() {
             })
             .catch(error => console.error(error));
 
-        flagsmith.init({
-            environmentID: "2aQ8Wc4RxNoVnQZBdweG4K",
-            cacheFlags: true,
-            enableAnalytics: true,
-            onChange: (oldFlags, params) => {
-                // setShowStoryPoints(flagsmith.hasFeature("show_story_points"));
-            },
-        });
+        // flagsmith.init({
+        //     environmentID: "2aQ8Wc4RxNoVnQZBdweG4K",
+        //     cacheFlags: true,
+        //     enableAnalytics: true,
+        //     onChange: (oldFlags, params) => {
+        //         setShowStoryPoints(flagsmith.hasFeature("show_story_points"));
+        //     },
+        // });
     }, []);
 
     return (
