@@ -15,6 +15,7 @@ function App() {
                 setStories(data.hits);
                 const message = data.hits.length ? "" : "No stories found";
                 setMessage(message);
+                console.log("fixed some release issues on release phase");
             } catch (err) {
                 console.log(`err: ${err.mesasge}`, err);
                 setMessage("could not fetch stories");
