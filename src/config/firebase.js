@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getRemoteConfig, getValue, fetchAndActivate, getAll } from "firebase/remote-config";
+import { getRemoteConfig } from "firebase/remote-config";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCcJvJcvsmt3prZ97Z8GGbS_IqJGm7RQ1k",
